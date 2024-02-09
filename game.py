@@ -1,39 +1,57 @@
-import pygame
+class Game:
+    def __init__(self,id) -> None:
+        self.id = id
+        self.player1Went = False
+        self.player2Went = False
+        self.ready = False
+        self.moves = [None,None]
+        self.wins = [0,0]
+        self.ties = 0
+    def getPlayerMove(self,p):
+        """
+        There are two players. p => [0,1]
+        """
+        return self.moves[p]  
+     
+    def play(self,p,move):
 
-width = 750
-height = 750
+        # This function:
+        # 1. Assigns move to the the respective player.
+        # 2. Returns which player played
 
-window = pygame.display.set_mode((width,height))
-pygame.display.set_caption('Client')
+        self.moves[p] = move 
+        if p == 0:
+            self.player1Went = True
+        else:
+            self.player2Went = True  
 
-def redrawWindow(window,player):
-    window.fill((255,255,255))
-    player.draw(window)
-    pygame.display.flip()
+    def isConnected(self):
+        return self.ready          
 
-# class RPS_Game:
-#     def __init__(self) -> None:
-#         button_surface = pygame.Surface((100,100))
-#         # self.rock = (100,350)
-#         # self.paper = (310,350)
-#         # self.scissor = (520,350)
-#     def draw(self,window):
-#         pygame.draw.rect(window,(255,0,0),self.rock)
-#         pygame.draw.rect(window,(0,255,0),self.paper)
-#         pygame.draw.rect(window,(0,0,255),self.scissor)
-#     # def click(self)        
-       
-def main():
-    run = True
-    p = RPS_Game()
-
-    while run:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-                pygame.quit()
-        redrawWindow(window,p)
-main()                
-
+    def bothwent(self):
+        return self.player1Went and self.player2Went
+    
+    def winner(self):
+        """
+        Get the initials of the moves of the players and run against various conditions
+        """
+        p0,p1 = self.moves[0].upper()[0],self.moves[1].upper()[0] #get the initials: R-> ROCK
+        winner = -1
+        if p0 == 'R' and p1 == 'S':
+            winner = 0
+        elif p0 == 'S' and p1 == 'R':   
+            winner = 1
+        elif p0 == 'S' and p1 == 'P':
+            winner = 0
+        elif p0 == 'P' and p1 == 'S': 
+            winner = 1
+        elif p0 == 'P' and p1 == 'R':
+            winner = 0
+        elif p0 == 'R' and p1 == 'P':
+            winner = 1
+        return winner
+    def resetWent(self):
+        self.player1Went = False
+        self.player2Went = False                    
 
 

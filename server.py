@@ -2,7 +2,7 @@ import socket
 from _thread import *
 
 serverAddress = "10.0.0.114"
-port = 5555
+port = 5557
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 try:

@@ -13,8 +13,11 @@ class Button:
        
     def draw(self,win):
         pygame.draw.rect(win,self.color,self.rect)
+        font = pygame.font.SysFont("comicsans",40)
+        text = font.render(self.buttonText,1,(255,255,255))
+        win.blit(text,(self.x + round(self.width/2) - text.get_width()//2),(self.y + self.height//2 - text.get_height()//2))
 
-    def is_clicked(self, pos):
+    def click(self, pos):
         if pos[0] > self.x and pos[0] < self.x + self.width:
             if pos[1] > self.y and pos[1] < self.y + self.height:
                 return True
