@@ -28,13 +28,16 @@ class Game:
     def isConnected(self):
         return self.ready          
 
-    def bothwent(self):
+    def bothWent(self):
         return self.player1Went and self.player2Went
     
     def winner(self):
         """
         Get the initials of the moves of the players and run against various conditions
         """
+        print("moves: ",self.moves
+              
+              )
         p0,p1 = self.moves[0].upper()[0],self.moves[1].upper()[0] #get the initials: R-> ROCK
         winner = -1
         if p0 == 'R' and p1 == 'S':
