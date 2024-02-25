@@ -2,6 +2,9 @@ This project enables you to play rock paper scissor over localhost.
 Requirements:
   1. python 
   2. pygame - `pip3 install pygame`
+
+
+
 To play follow the following steps:
   1. run server.py file using the command `python server.py `
   2. Open 2 windows on terminal and run client.py file using the command `python client.py`
